@@ -24,12 +24,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Required positional parameter "wf" in input and output of `ingress_pipeconfig_paths` function, where a node to reorient templates is added to the `wf`.
 - Required positional parameter "orientation" to `resolve_resolution`.
 - Optional positional argument "cfg" to `create_lesion_preproc`.
+- New switch `mask_sbref` under `Selected Functional Volume` in functional registration.
+- New resource `desc-head_bold` as non skull-stripped bold from nodeblock `bold_masking`.
 
 ### Changed
 
 - Moved `pygraphviz` from requirements to `graphviz` optional dependencies group.
 - Automatically tag untagged `subject_id` and `unique_id` as `!!str` when loading data config files.
 - Made orientation configurable (was hard-coded as "RPI").
+- Input `desc-brain_bold` to `desc-preproc_bold` for `sbref` generation nodeblock `coregistration_prep_vol`.
 
 ### Fixed
 
