@@ -50,7 +50,7 @@ jobs:
       # Copy the JSON file to the target repo and commit it
       - name: Commit documentation to target repo
         run: |
-          cp source-repo/nodeblock_index.json target-repo/
+          cp source-repo/nodeblock_index.json target-repo/src
           cd target-repo
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
