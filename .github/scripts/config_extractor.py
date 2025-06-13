@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     from CPAC.pipeline import ALL_PIPELINE_CONFIGS
     from CPAC.utils.configuration.configuration import Configuration, Preconfiguration
-    
+
     with open("nodeblock_index.json") as f:
         nbs = json.load(f)
     configs: dict[str, Configuration] = {config: Preconfiguration(config, skip_env_check=True) for config in ALL_PIPELINE_CONFIGS}
@@ -130,7 +130,7 @@ if __name__ == "__main__":
 
         configs_with_this_enabled = []
         for config_name, config in configs.items():
-            if _any_true_in_config(config, paths):
+            if all(config.switch_is_on(switch) for switch in paths):
                 configs_with_this_enabled.append(config_name)
 
         nb["workflows"] = configs_with_this_enabled
