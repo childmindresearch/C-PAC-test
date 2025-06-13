@@ -92,25 +92,13 @@ def normalize_index_union(indices) -> list[list[str]]:
 
 
 if __name__ == "__main__":
-    import sys
 
-    sys.path.append(".")
-
-    CPAC_DIR = pl.Path(".")
-    CONFIG_DIR = pl.Path("configs")
-
-    fetch_and_expand_all_cpac_configs(CPAC_DIR, CONFIG_DIR)
-
+    from CPAC.pipeline import ALL_PIPELINE_CONFIGS
+    from CPAC.utils.configuration.configuration import Configuration, Preconfiguration
+    
     with open("nodeblock_index.json") as f:
         nbs = json.load(f)
-
-    configs = {}
-
-    for config_path in CONFIG_DIR.glob("*.yml"):
-        with open(config_path, "r", encoding="utf-8") as handle:
-            config = yaml.safe_load(handle)
-
-        configs[config_path.stem] = config
+    configs: dict[str, Configuration] = {config: Preconfiguration(config, skip_env_check=True) for config in ALL_PIPELINE_CONFIGS}
 
     print(f"Found {len(configs)} pre-configs!")
 
